@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { TrendsActions } from './redux/types/trends';
-// import { fetchTrends } from './redux/action-creators/trends';
-import { trends as trendsData } from './data/trends';
 import { Route, Routes, Navigate } from 'react-router-dom';
+
+import { fetchTrends } from './redux/action-creators/trends';
+
 import Trends from './pages/Trends';
 import User from './pages/User';
 import Header from './components/Header';
@@ -31,14 +31,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch({ type: TrendsActions.TRENDS_FETCH });
-    // setTimeout(() => {
-    //   dispatch({ type: TrendsActions.TRENDS_FETCH_ERROR });
-    // }, 3000);
-    setTimeout(() => {
-      dispatch({ type: TrendsActions.TRENDS_FETCH_SUCCESS, payload: trendsData });
-    }, 2000);
-    // dispatch(fetchTrends());
+    dispatch(fetchTrends());
   }, [dispatch]);
 
   return (

@@ -7,10 +7,9 @@ const intialState: ISoundState = {
 export const soundReducer = (state = intialState, action: SoundAction) => {
   switch (action.type) {
     case SoundActions.TOGGLE_MUTED:
-      let prevState = state;
       return {
         ...state,
-        isMuted: !prevState.isMuted,
+        isMuted: !state.isMuted,
       };
     default:
       return state;

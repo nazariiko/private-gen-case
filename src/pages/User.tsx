@@ -5,16 +5,14 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { animateScroll as scroll } from 'react-scroll';
 
-import { userInfo } from '../data/user-info';
 import { useTypedSelector } from '../hooks/useTypedSelector';
-import { EnumUserAction } from '../redux/types/user';
 import { formatCount } from '../helpers/formatCount';
 import UserPreloader from '../components/UserPreloader';
 import Pagination from '../components/Pagination';
 import Post from '../components/Post';
 import PostPreloader from '../components/PostPreloader';
 import { TrendsActions } from '../redux/types/trends';
-// import { fetchUserInfo } from '../redux/action-creators/user';
+import { fetchUserInfo } from '../redux/action-creators/user';
 
 const StyledUser = styled.div`
   display: flex;
@@ -134,12 +132,7 @@ const User = () => {
   const [page, setPage] = React.useState(1);
 
   React.useEffect(() => {
-    // dispatch(fetchUserInfo(params.name as string));
-    dispatch({ type: EnumUserAction.USER_FETCH_INFO });
-    setTimeout(() => {
-      dispatch({ type: EnumUserAction.USER_FETCH_INFO_SUCCESS, payload: userInfo });
-      // dispatch({ type: EnumUserAction.USER_FETCH_INFO_ERROR });
-    }, 3000);
+    dispatch(fetchUserInfo(params.name as string));
   }, [dispatch, params.name]);
 
   const getFromValue = () => {

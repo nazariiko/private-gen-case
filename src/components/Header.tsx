@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+
 import BlackLogoDesktop from './logo/BlackLogoDesktop';
 
 const StyledHeader = styled.div`

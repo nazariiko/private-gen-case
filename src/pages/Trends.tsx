@@ -1,11 +1,13 @@
 import React from 'react';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import styled from 'styled-components';
+import { animateScroll as scroll } from 'react-scroll';
+import { useDispatch } from 'react-redux';
+
 import Post from '../components/Post';
 import PostPreloader from '../components/PostPreloader';
 import Pagination from '../components/Pagination';
-import { animateScroll as scroll } from 'react-scroll';
-import { useDispatch } from 'react-redux';
+
 import { TrendsActions } from '../redux/types/trends';
 
 const StyledTrends = styled.div`
