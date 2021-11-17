@@ -126,7 +126,7 @@ const VideoPlayer: React.FC<IVideoPlayerProps> = ({ videoUrl }) => {
 
   return (
     <StyledVideoPlayer className="videoPlayer">
-      <video ref={videoRef} src={videoUrl} loop muted onClick={togglePlay} />
+      <video ref={videoRef} src={videoUrl} loop muted onClick={togglePlay} playsInline />
       <StyledControlPause className="controls" onClick={togglePlay} isPlaying={isPlaying}>
         {isPlaying ? (
           <svg
