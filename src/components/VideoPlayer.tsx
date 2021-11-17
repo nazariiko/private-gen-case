@@ -115,6 +115,7 @@ const VideoPlayer: React.FC<IVideoPlayerProps> = ({ videoUrl }) => {
       document.body.removeEventListener('click', catchClickOnAnotherVideo);
       window.removeEventListener('scroll', checkIfInViewport);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   React.useEffect(() => {

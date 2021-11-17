@@ -2,13 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { TrendsActions } from './redux/types/trends';
-import { fetchTrends } from './redux/action-creators/trends';
+// import { fetchTrends } from './redux/action-creators/trends';
 import { trends as trendsData } from './data/trends';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import Trends from './pages/Trends';
 import User from './pages/User';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 const StyledApp = styled.div`
   max-width: 1100px;
@@ -42,11 +43,12 @@ const App = () => {
 
   return (
     <StyledApp>
+      <ScrollToTop />
       <Header />
       <Routes>
         <Route path="/" element={<Navigate replace to="/trends" />} />
         <Route path="/trends" element={<Trends />} />
-        <Route path="/user/:id" element={<User />} />
+        <Route path="/user/:name" element={<User />} />
       </Routes>
       <Footer />
     </StyledApp>

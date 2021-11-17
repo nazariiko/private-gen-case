@@ -15,9 +15,7 @@ interface IPostProps {
   playCount?: number;
 }
 
-interface IStyledPostProps {}
-
-const StyledPost = styled.div<IStyledPostProps>`
+const StyledPost = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 50px;
@@ -92,6 +90,21 @@ const StyledMainContent = styled.div`
     }
   }
 
+  .playCountWrapper {
+    margin-bottom: 10px;
+
+    p {
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 22px;
+      color: #000000;
+
+      span {
+        color: #ef2950;
+      }
+    }
+  }
+
   .videoWrapper {
     display: flex;
     align-items: flex-end;
@@ -158,17 +171,18 @@ const Post: React.FC<IPostProps> = ({
   videoUrl,
   commentCount,
   heartCount,
+  playCount,
 }) => {
   return (
     <StyledPost>
       <StyledTopInfo>
         <div className="avatar">
-          <Link to="/">
+          <Link to={`/user/${name}`}>
             <img src={avatarUrl} alt={name} />
           </Link>
         </div>
         <div className="nickName">
-          <Link to="/">
+          <Link to={`/user/${name}`}>
             <span>{name}</span>
           </Link>
         </div>
@@ -181,6 +195,13 @@ const Post: React.FC<IPostProps> = ({
           <div className="textWrapper">
             <p>{text}</p>
           </div>
+          {playCount && (
+            <div className="playCountWrapper">
+              <p>
+                Views: <span>{formatCount(playCount)}</span>
+              </p>
+            </div>
+          )}
           <div className="videoWrapper">
             <VideoPlayer videoUrl={videoUrl} />
 
@@ -230,4 +251,4 @@ const Post: React.FC<IPostProps> = ({
   );
 };
 
-export default Post;
+export default React.memo(Post);

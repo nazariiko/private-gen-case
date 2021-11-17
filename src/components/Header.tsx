@@ -21,7 +21,7 @@ const StyledHeader = styled.div`
 const Header = () => {
   return (
     <StyledHeader>
-      <Link to="/">
+      <Link to="/trends">
         <BlackLogoDesktop />
       </Link>
     </StyledHeader>

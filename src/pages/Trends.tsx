@@ -47,6 +47,12 @@ const StyledPostPreloader = styled.div`
   margin-bottom: 20px;
 `;
 
+const StyledError = styled.div`
+  p {
+    color: red;
+  }
+`;
+
 const Trends = () => {
   const { trends, loading, error } = useTypedSelector((state) => state.trends);
   const [page, setPage] = React.useState(1);
@@ -76,28 +82,33 @@ const Trends = () => {
       </div>
 
       <div className="listOfTrends">
-        {trends && !loading
-          ? trends
-              .slice(getFromValue(), getToValue())
-              .map((trend) => (
-                <Post
-                  avatarUrl={trend.authorMeta.avatar}
-                  name={trend.authorMeta.name}
-                  text={trend.text}
-                  videoUrl={trend.videoUrl}
-                  commentCount={trend.commentCount}
-                  heartCount={trend.diggCount}
-                  key={trend.id}
-                />
-              ))
-          : Array(5)
-              .fill(0)
-              .map((_, index) => (
-                <StyledPostPreloader key={index}>
-                  <PostPreloader />
-                </StyledPostPreloader>
-              ))}
-        {error ? <h1>Something went wrong</h1> : ''}
+        {trends.length && !loading ? (
+          trends
+            .slice(getFromValue(), getToValue())
+            .map((trend) => (
+              <Post
+                avatarUrl={trend.authorMeta.avatar}
+                name={trend.authorMeta.name}
+                text={trend.text}
+                videoUrl={trend.videoUrl}
+                commentCount={trend.commentCount}
+                heartCount={trend.diggCount}
+                key={trend.id}
+              />
+            ))
+        ) : !error ? (
+          Array(5)
+            .fill(0)
+            .map((_, index) => (
+              <StyledPostPreloader key={index}>
+                <PostPreloader />
+              </StyledPostPreloader>
+            ))
+        ) : (
+          <StyledError>
+            <p>:( Network or API Error!</p>
+          </StyledError>
+        )}
       </div>
       <Pagination onChangePage={onChangePage} page={page} />
     </StyledTrends>
